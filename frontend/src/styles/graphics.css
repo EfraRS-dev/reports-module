@@ -1,0 +1,24 @@
+.graphics-container{
+    display: flex;
+  justify-content: center;
+  gap: 24px; /* espacio entre gráficas */
+  padding: 20px;
+  background-color: #f5f5f5; /* gris claro para ver contraste */
+  /*min-height: 100vh; /* ocupa toda la pantalla */
+  align-items: center;
+}
+
+.graphic{
+    width: 250px;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.placeholder{
+    color: #999;
+    font-size: 14px;
+}
