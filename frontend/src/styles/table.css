@@ -4,9 +4,10 @@
 
 .filtro-input {
   margin-bottom: 10px;
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.2rem;
+  background-color: var(--filter);
+  color: var(--black);
 }
 
 .tabla-reportes {
@@ -19,7 +20,7 @@
 }
 
 .tabla-reportes th {
-  background-color: #d3d3d3;
+  background-color: var(--primary_color);
   text-align: center;
   padding: 10px;
   cursor: pointer;
