@@ -9,3 +9,66 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
         
+model Report {
+  id Int @id @default(autoincrement())
+  moduleId Int 
+  module Module @relation(fields: [moduleId], references: [id])
+  reportsRegistereds ReportRegistered[]
+  isActive Boolean @default(true)
+}
+
+model Module{
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  isActive Boolean @default(true)
+  reports Report[]
+}
+
+model ReportRegistered{
+  id Int @id @default(autoincrement())
+  reportId Int
+  report Report @relation(fields:[reportId], references: [id])
+  createdAt DateTime @default(now())
+  content Json
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  lastLoginAt DateTime?
+  payments Payment[]
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  name String
+  stock Int @default(0)
+  price Float
+  sold Int @default(0)
+  createdAt DateTime @default(now())
+  payments PaymentProduct[]
+}
+
+model Payment {
+  id Int @id @default(autoincrement())
+  userId Int
+  value Float
+  ceatedAt DateTime @default(now())
+  status String @default("pendiente")
+  user User @relation(fields:[userId], references: [id])
+  products PaymentProduct[]
+}
+
+model PaymentProduct {
+  id Int @id @default(autoincrement())
+  pagoId Int
+  productId Int
+  cantidad Int @default(1)
+  Payment Payment @relation(fields: [pagoId], references: [id])
+  product Product @relation(fields:[productId], references:[id])
+}
+
