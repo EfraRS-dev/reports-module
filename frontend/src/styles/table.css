@@ -12,7 +12,7 @@
 .tabla-reportes {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 8px;
+  border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-size: 14px;
@@ -20,7 +20,7 @@
 
 .tabla-reportes th {
   background-color: #d3d3d3;
-  text-align: left;
+  text-align: center;
   padding: 10px;
   cursor: pointer;
   user-select: none;
