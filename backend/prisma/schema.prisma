@@ -48,6 +48,7 @@ model Product {
   name String
   stock Int @default(0)
   price Float
+  category String
   sold Int @default(0)
   createdAt DateTime @default(now())
   payments PaymentProduct[]
