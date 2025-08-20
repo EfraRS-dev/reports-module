@@ -12,6 +12,13 @@ export class ReportService {
             clothing: 0,
             furniture: 0,
         };
+        const users = await this.prisma.user.finsMany({
+            select: {
+                name: true, 
+                email:true,
+                createdAt: true,
+            }
+        })
         
     }
 
@@ -20,7 +27,7 @@ export class ReportService {
     }
 
     async generateSalesReport() {
-        
+
     }
 
     async generateLastReport() {
