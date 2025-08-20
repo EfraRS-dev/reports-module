@@ -1,0 +1,26 @@
+.report-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.report-header label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.report-header select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 0.9rem;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.report-header select option {
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 0.8rem;
+}
