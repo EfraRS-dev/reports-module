@@ -1,0 +1,17 @@
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    padding: 1.5rem;
+    background-color: var(--primary_color);
+    align-items: center;
+    border-radius: 2rem;
+}
+
+.card{
+    background-color: var(--white);
+    height: 6rem;
+    width: 15rem;
+    border-radius: 1.2rem;
+    color: var(--black);
+}
