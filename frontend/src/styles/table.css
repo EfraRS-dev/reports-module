@@ -4,23 +4,24 @@
 
 .filtro-input {
   margin-bottom: 10px;
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.2rem;
+  background-color: var(--filter);
+  color: var(--black);
 }
 
 .tabla-reportes {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 8px;
+  border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-size: 14px;
 }
 
 .tabla-reportes th {
-  background-color: #d3d3d3;
-  text-align: left;
+  background-color: var(--primary_color);
+  text-align: center;
   padding: 10px;
   cursor: pointer;
   user-select: none;

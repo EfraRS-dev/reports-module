@@ -8,7 +8,7 @@
   max-width: 1200px; /* opcional: limitar ancho máximo */
   margin: 0 auto; /* centrar horizontalmente */
   background-color: #ffffff; /* fondo blanco */
-  border-radius: 15px; /* esquinas redondeadas */
+  border-radius: 2rem; /* esquinas redondeadas */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* sombra sutil */
   box-sizing: border-box;
   min-height: 100vh; /* ocupa toda la pantalla */

@@ -14,7 +14,7 @@ export default function Piechart() {
                 },
             ]}
             width={350}
-            height={240}
+            height={280}
         />
     );
 }
