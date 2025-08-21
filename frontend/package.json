@@ -15,6 +15,7 @@
     "@mui/material": "^7.3.1",
     "@mui/x-charts": "^8.10.1",
     "@tanstack/react-table": "^8.21.3",
+    "axios": "^1.11.0",
     "randomdata": "^0.0.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
