@@ -7,20 +7,20 @@ export class ReportService {
 
     async generateUsersReport() {
         const categories: { [key: string]: number } = {
-            appliances: 0 ,
+            appliances: 0,
             cleaning: 0,
             clothing: 0,
             furniture: 0,
         };
         const users = await this.prisma.user.findMany({
             select: {
-                name: true, 
-                email:true,
+                name: true,
+                email: true,
                 createdAt: true,
                 
             }
         })
-        
+
     }
 
     async generateProductsReport() {
