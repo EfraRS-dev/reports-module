@@ -1,20 +1,27 @@
 import { Report } from "./interfaz";
-import { UserDto } from "src/dto/user.dto";
-import { PaymentDto } from "src/dto/payment.dto";
 import { ProductDto, ProductReportDto } from "src/dto/product.dto";
-import { PrismaClient } from "@prisma/client";
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
 
-const prisma = new PrismaClient();
+
+type Categoria = "Electrónicos" | "Mobiliario" | "Accesorios";
 
 @Injectable()
-export class ProductReport implements Report {
-    users: UserDto[] = [];
-    payments: PaymentDto[] = [];
-    products: ProductReportDto[] = [];
+export class ProductReport implements Report<{
+    dataTable: ProductDto[];
+    comparison: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] };
+    categoriesComparison: { categorias: Categoria[]; count: number[] };
+}> {
+    constructor(private readonly prisma: PrismaService) { }
+
+    report: {
+        dataTable: ProductDto[];
+        dataGraphicOne: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] };
+        dataGraphicTwo: { categorias: Categoria[]; count: number[] };
+    }
 
     async consultModule(): Promise<ProductReportDto[]> {
-        const productData = await prisma.product.findMany({
+        const productData = await this.prisma.product.findMany({
             select: {
                 name: true,
                 price: true,
@@ -27,20 +34,24 @@ export class ProductReport implements Report {
         return productData;
     }
 
-    async makeStadistics(): Promise<{}> {
-        const Products = await this.consultModule();
-        Products.map(product => {
-            product.MostSoldProductByCategory = this.getMostSoldProductByCategory(Products, product.category);
+    makeStadistics(data: ProductReportDto[]): { comparisonData: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] }; mostSoldByCategory: { categorias: Categoria[]; count: number[] } } {
+        data.map(product => {
+            product.MostSoldProductByCategory = this.getMostSoldProductByCategory(data, product.category);
             product.inventoryStatus = this.getInventoryStatus(product);
         })
-        const comparitionData = this.getcomparitionstockandsold(Products);
-        const mostSoldByCategory = this.getMostSoldByCategory(Products);
-        return {}
+        const comparisonData = this.getcomparitionstockandsold(data);
+        const mostSoldByCategory = this.getMostSoldByCategory(data);
+        return { comparisonData, mostSoldByCategory }
     }
 
-    generateReport(): void {
-        // Implementation for generating the report
-        console.log("Generating user report...");
+    generateReport(dataTable: ProductDto[], stadistics: {comparison: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] }; categoriesComparison: { categorias: Categoria[]; count: number[] }}): void {
+        this.report.dataTable = dataTable;
+        this.report.dataGraphicOne = stadistics.comparison;
+        this.report.dataGraphicTwo = stadistics.categoriesComparison;
+    }
+
+    getreport(): any {
+        return this.report
     }
 
     getInventoryStatus(product: ProductDto): string {
@@ -79,28 +90,26 @@ export class ProductReport implements Report {
         return mostSold.name;
     }
 
-    getMostSoldByCategory(productData: ProductDto[]): { categories: string[]; sales: number[] } {
+    getMostSoldByCategory(productData: ProductDto[]): { categorias: Categoria[]; count: number[] } {
         if (!productData || productData.length === 0) {
-            return { categories: [], sales: [] };
+            return { categorias: [], count: [] };
         }
-        const categoryMap = new Map<string, ProductDto[]>();
-        productData.forEach(product => {
-            if (!categoryMap.has(product.category)) {
-                categoryMap.set(product.category, []);
+        const cat: Categoria[] = ["Electrónicos", "Mobiliario", "Accesorios"];
+        const categorias: Categoria[] = [];
+        const ventas: number[] = [];
+        cat.forEach((categoria) => {
+            const productsInCategory = productData.filter((p) => p.category === categoria);
+            if (productsInCategory.length > 0) {
+                const mostSold = productsInCategory.reduce((prev, current) =>
+                    prev.sold > current.sold ? prev : current
+                );
+                categorias.push(categoria);
+                ventas.push(mostSold.sold);
             }
-            categoryMap.get(product.category)!.push(product);
         });
 
-        const categories: string[] = [];
-        const sales: number[] = [];
-
-        categoryMap.forEach((products, category) => {
-            const mostSold = products.reduce((prev, current) => prev.sold > current.sold ? prev : current
-            );
-            categories.push(category);
-            sales.push(mostSold.sold);
-        });
-        return { categories, sales };
+        return { categorias, count: ventas };
     }
+
 
 }

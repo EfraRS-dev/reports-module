@@ -1,5 +1,3 @@
-
-
 export interface Report <T = any> {
     report: {
         dataTable: any[];
