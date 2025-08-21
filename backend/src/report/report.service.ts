@@ -33,4 +33,22 @@ export class ReportService {
   async generateSalesReport() {}
 
   async generateLastReport() {}
+
+  async exportReport(type: 'pdf' | 'excel') {
+    const data = [
+      { name: 'Ana', age: 25 },
+      { name: 'Juan', age: 30 },
+    ];
+
+    const buffer = await this.generate(type, data);
+
+    return {
+      buffer: Buffer.from(buffer),
+      filename: `report.${type === 'pdf' ? 'pdf' : 'xlsx'}`,
+      mimeType:
+        type === 'pdf'
+          ? 'application/pdf'
+          : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    };
+  }
 }

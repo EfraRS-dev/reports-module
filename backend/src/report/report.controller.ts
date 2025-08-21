@@ -22,24 +22,10 @@ export class ReportController {
 
   @Get('download')
   async download(@Query('type') type: 'pdf' | 'excel', @Res() res: Response) {
-    const data = [
-      { name: 'Ana', age: 25 },
-      { name: 'Juan', age: 30 },
-    ];
+    const report = await this.reportService.exportReport(type);
 
-    const buffer = await this.reportService.generate(type, data);
-
-    res.setHeader(
-      'Content-Disposition',
-      `attachment; filename="report.${type === 'pdf' ? 'pdf' : 'xlsx'}"`,
-    );
-    res.setHeader(
-      'Content-Type',
-      type === 'pdf'
-        ? 'application/pdf'
-        : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    );
-
-    res.send(Buffer.from(buffer));
+    res.setHeader('Content-Disposition', `attachment; filename="${report.filename}"`);
+    res.setHeader('Content-Type', report.mimeType);
+    res.send(report.buffer);
   }
 }
