@@ -1,7 +1,6 @@
 // pdf-exporter.ts
 import { ReportExporterTemplate } from './report-exporter.template';
-import * as PDFDocument from 'pdfkit';
-
+import PDFDocument from 'pdfkit';
 
 export class PdfExporter extends ReportExporterTemplate {
   protected async render(data: any[]): Promise<ArrayBuffer> {
@@ -12,7 +11,12 @@ export class PdfExporter extends ReportExporterTemplate {
       doc.on('data', (chunk: Uint8Array) => chunks.push(chunk));
       doc.on('end', () => {
         const buffer = Buffer.concat(chunks);
-        resolve(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
+        resolve(
+          buffer.buffer.slice(
+            buffer.byteOffset,
+            buffer.byteOffset + buffer.byteLength,
+          ),
+        );
       });
       doc.on('error', reject);
 
@@ -27,6 +31,3 @@ export class PdfExporter extends ReportExporterTemplate {
     });
   }
 }
-
-
-

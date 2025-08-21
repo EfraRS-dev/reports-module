@@ -11,4 +11,3 @@ export abstract class ReportExporterTemplate {
 
   protected abstract render(data: any[]): Promise<ArrayBuffer>;
 }
-
