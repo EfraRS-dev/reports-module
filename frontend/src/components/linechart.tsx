@@ -1,27 +1,24 @@
 import { LineChart } from '@mui/x-charts/LineChart';
 
 const margin = { right: 24 };
-const uData = [4000, 3000, 2000, 2780, 1890, 2390];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800];
-const xLabels = [
-  'Page A',
-  'Page B',
-  'Page C',
-  'Page D',
-  'Page E',
-  'Page F'
-];
 
-export default function Linechart({data} : {data: any}) {
+export type LineChartData = {
+    array1: number[];
+    array2: number[];
+    array3: string[];
+    array4: string[];
+};
+
+export default function Linechart({data} : {data: LineChartData}) {
     return (
         <LineChart
             width={540}
             height={300}
             series={[
-                { data: pData, label: 'pv' },
-                { data: uData, label: 'uv' },
+                { data: data.array1, label: data.array4[0]},
+                { data: data.array2, label: data.array4[1]},
             ]}
-            xAxis={[{ scaleType: 'point', data: xLabels }]}
+            xAxis={[{ scaleType: 'point', data: data.array3 }]}
             yAxis={[{ width: 50 }]}
             margin={margin}
         />
