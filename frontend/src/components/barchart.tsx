@@ -1,7 +1,6 @@
-import React from "react";
 import { BarChart } from '@mui/x-charts/BarChart';
 
-export default function Barchart() {
+export default function Barchart({ data }: { data: any }) {
     return (
         <BarChart
             xAxis={[{ id: 'barCategories', data: ['bar A', 'bar B', 'bar C', 'bar D', 'bar E', 'bar F'] }]}

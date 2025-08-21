@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -11,21 +11,17 @@ import type { ColumnDef, SortingState } from "@tanstack/react-table";
 
 import "../styles/table.css";
 
-function TablaReportes({ data }: { data: any[]}) {
-    console.log(data);
-  if (!data || data.length === 0) {
-    return <p>No hay datos para mostrar</p>;
-  }
+export default function TablaReportes({ data }: any) {
+  
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   // generar columnas dinámicamente
-  const columns: ColumnDef<any>[] = Object.keys(data[0]).map((key) => ({
+  const columns: ColumnDef<string>[] = Object.keys(data[0]).map((key) => ({
     accessorKey: key,
     header: key.toUpperCase(),
     //cell: info => info.getValue(), // usa el valor original de la fila
   }));
-
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = React.useState("");
 
   const table = useReactTable({
     data,
@@ -37,6 +33,12 @@ function TablaReportes({ data }: { data: any[]}) {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
+
+  if (!data || data.length === 0) {
+    return <p>No hay datos para mostrar</p>;
+  }
+
+  
 
   return (
     <div className="tabla-container">
@@ -71,15 +73,12 @@ function TablaReportes({ data }: { data: any[]}) {
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
                 console.log("DEBUG: cell", cell.getValue());
-                return(
-                <td key={cell.id}>
-                    {/*JSON.stringify(cell.getValue())*/}
-                    {/*flexRender(cell.column.columnDef.cell, cell.getContext())*/}
+                return (
+                  <td key={cell.id}>
                     {String(cell.getValue())}
-                </td>
-              )}
-                )
-              }   
+                  </td>
+                );
+              })}   
             </tr>
           ))}
         </tbody>
@@ -87,5 +86,3 @@ function TablaReportes({ data }: { data: any[]}) {
     </div>
   );
 }
-
-export default TablaReportes;
