@@ -12,11 +12,12 @@ export class ReportService {
             clothing: 0,
             furniture: 0,
         };
-        const users = await this.prisma.user.finsMany({
+        const users = await this.prisma.user.findMany({
             select: {
                 name: true, 
                 email:true,
                 createdAt: true,
+                
             }
         })
         
