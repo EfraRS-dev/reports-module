@@ -1,12 +1,13 @@
-import { PaymentDto } from "src/dto/payment.dto";
-import { ProductDto, ProductReportDto } from "src/dto/product.dto";
-import { UserDto } from "src/dto/user.dto";
 
-export interface Report {
-    users: UserDto[];
-    payments: PaymentDto[];
-    products: ProductReportDto[];
-    consultModule(): {};
-    makeStadistics(): {};
-    generateReport(): void;
+
+export interface Report <T = any> {
+    report: {
+        dataTable: any[];
+        dataGraphicOne: any;
+        dataGraphicTwo: any;
+    }
+    consultModule(): Promise<any>;
+    makeStadistics(data: any[]): any;
+    generateReport(dataTable: any[], stadistics: any): any;
+    getreport(): T;
 }

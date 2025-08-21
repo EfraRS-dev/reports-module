@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString, IsOptional } from "class-validator";
 
 export class UserDto {
     @IsNotEmpty()
-    nombre: string;
+    name: string;
 
     @IsNotEmpty()
     @IsString()
@@ -16,5 +16,10 @@ export class UserDto {
     lastLoginAt: Date;
 
     @IsNotEmpty()
-    Payments: PaymentDto[];
+    payments: PaymentDto[];
+
+    mostPurchasedCategory: string;
+
+    paymentsQuantity: number;
 }
+
