@@ -1,10 +1,15 @@
 import { BarChart } from '@mui/x-charts/BarChart';
 
-export default function Barchart({ data }: { data: any }) {
+export type BarChartData = {
+    name: string[];
+    value: number[]; 
+}
+
+export default function Barchart({ data }: { data: BarChartData }) {
     return (
         <BarChart
-            xAxis={[{ id: 'barCategories', data: ['bar A', 'bar B', 'bar C', 'bar D', 'bar E', 'bar F'] }]}
-            series={[{ data: [2, 5, 3, 6, 9, 10] }]}
+            xAxis={[{ id: 'barCategories', data: data.name }]}
+            series={[{ data: data.value }]}
             width={540}
             height={300}
             borderRadius={25}
