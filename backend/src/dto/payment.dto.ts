@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from "class-validator";
+import { ProductDto } from "./product.dto";
 
 export class PaymentDto {
     @IsNotEmpty()
@@ -14,4 +15,6 @@ export class PaymentDto {
     @IsNotEmpty()
     @IsString()
     status: string;
+
+    products: ProductDto[];
 }
