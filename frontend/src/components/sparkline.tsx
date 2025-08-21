@@ -1,12 +1,17 @@
 import { LineChart } from '@mui/x-charts/LineChart';
 
-export default function Sparkline({data} : {data: any}) {
+export type SparklineData = {
+    data: number[];
+    data2?: number[];
+}
+
+export default function Sparkline({data} : {data: SparklineData}) {
   return (
     <LineChart
-      xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+      xAxis={[{ data: data.data }]}
       series={[
         {
-          data: [2, 5.5, 2, 8.5, 1.5, 5],
+          data: data.data2,
           area: true,
         },
       ]}
