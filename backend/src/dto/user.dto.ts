@@ -13,13 +13,24 @@ export class UserDto {
     createdAt: Date;
 
     @IsOptional()
-    lastLoginAt: Date;
+    lastLoginAt?: Date | null;
 
     @IsNotEmpty()
-    payments: PaymentDto[];
+    payments: UserReportPaymentDto[];
 
-    mostPurchasedCategory: string;
+    @IsOptional()
+    mostPurchasedCategory?: string;
 
-    paymentsQuantity: number;
+    @IsOptional()
+    paymentsQuantity?: number;
+}
+
+export class UserReportPaymentDto {
+  value: number;
+  products: {
+    product:{
+        category: string;
+    };
+  }[];
 }
 

@@ -1,6 +1,6 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
 import { ReportService } from './report.service';
-
+import type { Response } from 'express';
 @Controller('report')
 export class ReportController {
   constructor(private readonly reportService: ReportService) {}

@@ -20,7 +20,7 @@ export class ProductReport implements Report<{
         dataGraphicTwo: { categorias: Categoria[]; count: number[] };
     }
 
-    async consultModule(): Promise<ProductReportDto[]> {
+    async consultModule(): Promise<ProductDto[]> {
         const productData = await this.prisma.product.findMany({
             select: {
                 name: true,

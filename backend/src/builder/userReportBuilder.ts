@@ -26,14 +26,27 @@ export class UsersReportBuilder implements Report<{
                 email: true,
                 createdAt: true,
                 lastLoginAt: true,
-                Payments: {
-                    value: true,
-                    products: {
-                        category: true
+                payments: {
+                    select: {
+                        value: true,
+                        products: {
+                            select:{
+                                product:{
+                                    select:{
+                                        category: true
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }
                     }
+                    
                 }
             }
         });
+
         return usersData;
     }
 
@@ -70,9 +83,10 @@ export class UsersReportBuilder implements Report<{
         const categoryCount: Record<Categoria, number> = { "Electrónicos": 0, "Mobiliario": 0, "Accesorios": 0 };
         data.payments.forEach(payment => {
             payment.products.forEach(product => {
-                if (isCategoria(product.category)) {
-                    categoryCount[product.category as Categoria]++;
-                }
+                    if (isCategoria(product.product.category)) {
+                    categoryCount[product.product.category as Categoria]++;
+                    }
+                 
             })
         });
         return Object.keys(categoryCount).reduce((a, b) => categoryCount[a as Categoria] > categoryCount[b as Categoria] ? a : b);
@@ -102,6 +116,9 @@ export class UsersReportBuilder implements Report<{
         const rangeCounts: Record<string, number> = { "0": 0, "1-5": 0, "6-10": 0, "11-15": 0, "16-20": 0, "21+": 0 };
         data.forEach(user => {
             const quantity = user.paymentsQuantity;
+            if (quantity === undefined) {
+                return;
+            }
             if (quantity === 0) {
                 rangeCounts["0"]++;
             } else if (quantity <= 5) {

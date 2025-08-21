@@ -27,6 +27,8 @@
     "@prisma/client": "^6.14.0",
     "class": "^0.1.4",
     "class-validator": "^0.14.2",
+    "exceljs": "^4.4.0",
+    "pdfkit": "^0.17.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "transformer": "^1.2.8"
