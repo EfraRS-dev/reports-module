@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 
 const margin = { right: 24 };
@@ -13,7 +12,7 @@ const xLabels = [
   'Page F'
 ];
 
-export default function Linechart() {
+export default function Linechart({data} : {data: any}) {
     return (
         <LineChart
             width={540}

@@ -9,6 +9,8 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: #333;
+  line-height: 1;
+  margin-bottom: 3.5px;
 }
 
 .report-header select {
@@ -17,10 +19,11 @@
   border-radius: 0.9rem;
   font-size: 14px;
   background-color: #fff;
+  color: #333;
 }
 
 .report-header select option {
-  background-color: var(--white);
-  color: var(--black);
+  background-color: #fff;
+  color: #333;
   font-size: 0.8rem;
 }

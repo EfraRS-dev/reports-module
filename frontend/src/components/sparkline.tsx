@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-export default function Sparkline() {
+export default function Sparkline({data} : {data: any}) {
   return (
     <LineChart
       xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}

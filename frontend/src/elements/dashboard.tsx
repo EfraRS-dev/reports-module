@@ -1,4 +1,4 @@
-import Graphics from "./graphics";
+import GraphicsLayout from "./graphics";
 import "../styles/dashboard.css";
 import TablaReportes from "./table";
 import ReportHeader from "./reportHeader";
@@ -17,7 +17,7 @@ export default function Dashboard(){
                 <ReportHeader />
             </header>
             <section >
-                <Graphics />
+                <GraphicsLayout />
             </section>
             <section>
                 <Cards />

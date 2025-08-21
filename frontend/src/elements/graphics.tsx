@@ -1,14 +1,11 @@
-import Barchart from "../components/barchart";
-import Linechart from "../components/linechart";
-import Piechart from "../components/piechart";
-import Sparkline from "../components/sparkline";
+import ChartFacade from "../components/chartFacade";
 import "../styles/graphics.css" 
 
-export default function Graphics(){
-    return(
+export default function GraphicsLayout() {
+    return (
         <div className="graphics-container">
-            <div className="graphic"> <Piechart /> </div>
-            <div className="graphic"> <Sparkline /> </div>
+            <ChartFacade type="pie" title="Sales Distribution" data={{}} />
+            <ChartFacade type="sparkline" title="Sales Trend" data={{}} />
         </div>
     )
 }
