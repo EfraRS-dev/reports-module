@@ -49,7 +49,27 @@ export default function Dashboard() {
                 )}
             </section>
             <section>
-                <TablaReportes data={registros} />
+                {data ? (
+                    <TablaReportes
+                        data={
+                            modulo === "clientes"
+                                ? (data as any).dataTable.map((user: any) => ({
+                                    name: user.name,
+                                    email: user.email,
+                                    mostPurchasedCategory: user.mostPurchasedCategory,
+                                    paymentsQuantity: user.paymentsQuantity
+                                }))
+                                : (data as any).dataTable.map((product: any) => ({
+                                    name: product.name,
+                                    category: product.category,
+                                    price: product.price,
+                                    stock: product.stock
+                                }))
+                        }
+                    />
+                ) : (
+                    <p>Cargando datos...</p>
+                )}
             </section>
             <section>
                 <ExportButtons />
