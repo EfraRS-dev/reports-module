@@ -9,8 +9,8 @@ type Categoria = "Electrónicos" | "Mobiliario" | "Accesorios";
 @Injectable()
 export class ProductReport implements Report<{
     dataTable: ProductDto[];
-    comparison: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] };
-    categoriesComparison: { categorias: Categoria[]; count: number[] };
+    dataGraphicOne: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] };
+    dataGraphicTwo: { categorias: Categoria[]; count: number[] };
 }> {
     constructor(private readonly prisma: PrismaService) { }
 
@@ -44,13 +44,17 @@ export class ProductReport implements Report<{
         return { comparisonData, mostSoldByCategory }
     }
 
-    generateReport(dataTable: ProductDto[], stadistics: {comparison: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] }; categoriesComparison: { categorias: Categoria[]; count: number[] }}): void {
+    generateReport(dataTable: ProductDto[], stadistics: { comparison: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] }; categoriesComparison: { categorias: Categoria[]; count: number[] } }): void {
         this.report.dataTable = dataTable;
         this.report.dataGraphicOne = stadistics.comparison;
         this.report.dataGraphicTwo = stadistics.categoriesComparison;
     }
 
-    getreport(): any {
+    getreport(): {
+        dataTable: ProductDto[];
+        dataGraphicOne: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] };
+        dataGraphicTwo: { categorias: Categoria[]; count: number[] };
+    } {
         return this.report
     }
 

@@ -20,9 +20,6 @@ export default function Dashboard(){
                 <GraphicsLayout />
             </section>
             <section>
-                <Cards />
-            </section>
-            <section>
                 <TablaReportes data={registros}/>
             </section>
             <section>
