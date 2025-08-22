@@ -4,7 +4,8 @@ import "../styles/graphics.css"
 export default function GraphicsLayout({ Data, Modulo }: { Data: any; Modulo: string }) {
 
     if (Modulo === "clientes") {
-        {console.log(Data.dataGraphicOne)}
+        console.log("Datasooos papa", Data.dataGraphicOne)
+        console.log("Datasooos", Data.dataGraphicTwo)
         return (
             <div className="graphics-container">
                 <ChartFacade type="pie" title="Sales Distribution" data={Data.dataGraphicOne} />
@@ -16,8 +17,8 @@ export default function GraphicsLayout({ Data, Modulo }: { Data: any; Modulo: st
     if (Modulo === "productos") {
         return (
             <div className="graphics-container">
-                <ChartFacade type="bar" title="Product Categories" data={Data.dataGraphicOne} />
-                <ChartFacade type="line" title="Product Sales Trend" data={Data.dataGraphicTwo} />
+                <ChartFacade type="bar" title="Product Categories" data={Data.dataGraphicTwo} />
+                <ChartFacade type="line" title="Product Sales Trend" data={Data.dataGraphicOne} />
             </div>
         )
     }

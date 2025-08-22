@@ -1,5 +1,5 @@
 import GraphicsLayout from "./graphics";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/dashboard.css";
 import TablaReportes from "./table";
 import ReportHeader from "./reportHeader";
@@ -14,7 +14,7 @@ const registros = [
 
 export default function Dashboard() {
     const [modulo, setModulo] = useState("");
-    const [data, setData] = useState();
+    const [data, setData] = useState(null);
 
     useEffect(() => {
         if (!modulo) return;
@@ -40,8 +40,13 @@ export default function Dashboard() {
             <header>
                 <ReportHeader onChange={setModulo} />
             </header>
-            <section >
-                <GraphicsLayout Data={data} Modulo={modulo} />
+            <section>
+                {/* Evita error cuando data es null */}
+                {data ? (
+                    <GraphicsLayout Data={data} Modulo={modulo} />
+                ) : (
+                    <p>Selecciona un módulo para ver los gráficos</p>
+                )}
             </section>
             <section>
                 <TablaReportes data={registros} />
