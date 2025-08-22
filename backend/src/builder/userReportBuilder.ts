@@ -8,8 +8,8 @@ type Categoria = "Electrónicos" | "Mobiliario" | "Accesorios";
 @Injectable()
 export class UsersReportBuilder implements Report<{
     dataTable: UserDto[];
-    percents: { id: number; category: Categoria; percent: number }[];
-    paymentQuantitiesRange: { range: string[]; count: number[] };
+    dataGraphicOne: { id: number; category: string; percent: number }[];
+    dataGraphicTwo: { range: string[]; count: number[] };
 }> {
     constructor(private readonly prisma: PrismaService) { }
 
@@ -30,19 +30,19 @@ export class UsersReportBuilder implements Report<{
                     select: {
                         value: true,
                         products: {
-                            select:{
-                                product:{
-                                    select:{
+                            select: {
+                                product: {
+                                    select: {
                                         category: true
                                     }
-                                    
+
                                 }
-                                
+
                             }
-                            
+
                         }
                     }
-                    
+
                 }
             }
         });
@@ -71,7 +71,11 @@ export class UsersReportBuilder implements Report<{
         this.report.dataGraphicTwo = stadistics.paymentQuantitiesRange;
     }
 
-    getreport(): any {
+    getreport(): {
+        dataTable: UserDto[];
+        dataGraphicOne: { id: number; category: string; percent: number }[];
+        dataGraphicTwo: { range: string[]; count: number[] };
+    } {
         return this.report;
     }
 
@@ -83,10 +87,10 @@ export class UsersReportBuilder implements Report<{
         const categoryCount: Record<Categoria, number> = { "Electrónicos": 0, "Mobiliario": 0, "Accesorios": 0 };
         data.payments.forEach(payment => {
             payment.products.forEach(product => {
-                    if (isCategoria(product.product.category)) {
+                if (isCategoria(product.product.category)) {
                     categoryCount[product.product.category as Categoria]++;
-                    }
-                 
+                }
+
             })
         });
         return Object.keys(categoryCount).reduce((a, b) => categoryCount[a as Categoria] > categoryCount[b as Categoria] ? a : b);

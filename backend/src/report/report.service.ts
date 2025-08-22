@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PdfExporter } from './exporters/pdf-exporter';
 import { ExcelExporter } from './exporters/excel-exporter';
+import { UsersReportBuilder } from 'src/builder/userReportBuilder';
+import { Director } from 'src/builder/director';
+import { ProductReport } from 'src/builder/productReportBuilder';
 
 @Injectable()
 export class ReportService {
@@ -13,26 +16,22 @@ export class ReportService {
   }
 
   async generateUsersReport() {
-    const categories: { [key: string]: number } = {
-      appliances: 0,
-      cleaning: 0,
-      clothing: 0,
-      furniture: 0,
-    };
-    const users = await this.prisma.user.findMany({
-      select: {
-        name: true,
-        email: true,
-        createdAt: true,
-      },
-    });
+    const userreport = new UsersReportBuilder(this.prisma);
+    const director = new Director(userreport);
+    await director.build();
+    return userreport.getreport();
   }
 
-  async generateProductsReport() {}
+  async generateProductsReport() {
+    const productReport = new ProductReport(this.prisma);
+    const director = new Director(productReport);
+    await director.build();
+    return productReport.getreport();
+  }
 
-  async generateSalesReport() {}
+  //async generateSalesReport() {}
 
-  async generateLastReport() {}
+  //async generateLastReport() {}
 
   async exportReport(type: 'pdf' | 'excel') {
     const data = [
