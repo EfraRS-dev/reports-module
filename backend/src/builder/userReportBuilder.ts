@@ -11,13 +11,13 @@ export class UsersReportBuilder implements Report<{
     dataGraphicOne: { id: number; category: string; percent: number }[];
     dataGraphicTwo: { range: string[]; count: number[] };
 }> {
-    constructor(private readonly prisma: PrismaService) { 
+    constructor(private readonly prisma: PrismaService) {
         this.report = {
             dataTable: [],
             dataGraphicOne: [],
             dataGraphicTwo: { range: [], count: [] }
         };
-     }
+    }
 
     report: {
         dataTable: UserDto[];
