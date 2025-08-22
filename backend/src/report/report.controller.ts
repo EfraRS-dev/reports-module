@@ -15,11 +15,6 @@ export class ReportController {
     return this.reportService.generateProductsReport();
   }
 
-  @Get('sales')
-  async getSalesReport() {
-    return this.reportService.generateSalesReport();
-  }
-
   @Get('download')
   async download(@Query('type') type: 'pdf' | 'excel', @Res() res: Response) {
     const report = await this.reportService.exportReport(type);

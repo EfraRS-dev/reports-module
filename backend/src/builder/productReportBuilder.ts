@@ -12,7 +12,13 @@ export class ProductReport implements Report<{
     dataGraphicOne: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] };
     dataGraphicTwo: { categorias: Categoria[]; count: number[] };
 }> {
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(private readonly prisma: PrismaService) { 
+        this.report = {
+            dataTable: [],
+            dataGraphicOne: { soldData: [], stockData: [], productsName: [], Labels: [] },
+            dataGraphicTwo: { categorias: [], count: [] }
+        };
+     }
 
     report: {
         dataTable: ProductDto[];
