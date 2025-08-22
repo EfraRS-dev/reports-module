@@ -2,10 +2,11 @@ import Barchart from './barchart';
 import Linechart from './linechart';
 import Piechart from './piechart';
 import Sparkline from './sparkline';
+import Barchart2 from './barchart2';
 
 import '../styles/chartFacade.css';
 
-export type ChartType = 'bar' | 'line' | 'pie' | 'sparkline';
+export type ChartType = 'bar' | 'line' | 'bar2' | 'pie' | 'sparkline';
 
 export interface ChartFacadeProps {
   type: ChartType;
@@ -19,6 +20,8 @@ export default function ChartFacade({ type, title, data }: ChartFacadeProps) {
     switch (type) {
       case 'bar':
         return <Barchart data={data} />;
+      case 'bar2':
+        return <Barchart2 data={data} />;
       case 'line':
         return <Linechart data={data} />;
       case 'pie':

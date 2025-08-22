@@ -9,7 +9,7 @@ export default function GraphicsLayout({ Data, Modulo }: { Data: any; Modulo: st
         return (
             <div className="graphics-container">
                 <ChartFacade type="pie" title="Sales Distribution" data={Data.dataGraphicOne} />
-                <ChartFacade type="bar" title="Sales Trend" data={Data.dataGraphicTwo} />
+                <ChartFacade type="bar2" title="Sales Trend" data={Data.dataGraphicTwo} />
             </div>
         )
     }
