@@ -1,7 +1,7 @@
 // utils/downloadReport.ts
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
 
 // función para extraer el nombre de archivo del header Content-Disposition
@@ -11,9 +11,9 @@ function getFilenameFromDisposition(disposition?: string): string | null {
   return match ? decodeURIComponent(match[1].replace(/['"]/g, "")) : null;
 }
 
-export async function downloadReport(type: "pdf" | "excel") {
+export async function downloadReport(type: "pdf" | "excel", data: any) {
   const res = await axios.get(`${API_URL}/report/download`, {
-    params: { type },
+    params: { type, data },
     responseType: "blob", // 👈 clave: recibimos blob
   });
 

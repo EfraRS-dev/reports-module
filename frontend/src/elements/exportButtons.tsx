@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/exportButtons.css";
 import { downloadReport } from "../utils/downloadReport";
 
-export default function ExportButtons() {
+export default function ExportButtons({ Data }: { Data: any }) {
   const [loading, setLoading] = useState<"pdf" | "excel" | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -10,7 +10,7 @@ export default function ExportButtons() {
     try {
       setError(null);
       setLoading(type);
-      await downloadReport(type);
+      await downloadReport(type, Data.dataTable);
     } catch (err: any) {
       setError("Error al descargar: " + (err.message || "desconocido"));
       console.error(err);

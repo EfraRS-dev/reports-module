@@ -72,7 +72,7 @@ export default function Dashboard() {
                 )}
             </section>
             <section>
-                <ExportButtons />
+                <ExportButtons Data={data}/>
             </section>
         </div>
     )

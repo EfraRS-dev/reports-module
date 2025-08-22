@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Controller, Get, Query, Res, Post } from '@nestjs/common';
 import { ReportService } from './report.service';
 import type { Response } from 'express';
 @Controller('report')
@@ -16,8 +16,9 @@ export class ReportController {
   }
 
   @Get('download')
-  async download(@Query('type') type: 'pdf' | 'excel', @Res() res: Response) {
-    const report = await this.reportService.exportReport(type);
+  async download(@Query('type') type: 'pdf' | 'excel', data: any , @Res() res: Response) {
+    console.log("Descargando reporte:", type, data);
+    const report = await this.reportService.exportReport(type, data);
 
     res.setHeader('Content-Disposition', `attachment; filename="${report.filename}"`);
     res.setHeader('Content-Type', report.mimeType);

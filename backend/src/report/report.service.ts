@@ -33,12 +33,7 @@ export class ReportService {
 
   //async generateLastReport() {}
 
-  async exportReport(type: 'pdf' | 'excel') {
-    const data = [
-      { name: 'Ana', age: 25 },
-      { name: 'Juan', age: 30 },
-    ];
-
+  async exportReport(type: 'pdf' | 'excel', data: any) {
     const buffer = await this.generate(type, data);
 
     return {
