@@ -50,10 +50,10 @@ export class ProductReport implements Report<{
         return { comparisonData, mostSoldByCategory }
     }
 
-    generateReport(dataTable: ProductDto[], stadistics: { comparison: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] }; categoriesComparison: { categorias: Categoria[]; count: number[] } }): void {
+    generateReport(dataTable: ProductDto[], stadistics: { comparisonData: { soldData: number[]; stockData: number[]; productsName: string[]; Labels: string[] }; mostSoldByCategory: { categorias: Categoria[]; count: number[] } }): void {
         this.report.dataTable = dataTable;
-        this.report.dataGraphicOne = stadistics.comparison;
-        this.report.dataGraphicTwo = stadistics.categoriesComparison;
+        this.report.dataGraphicOne = stadistics.comparisonData;
+        this.report.dataGraphicTwo = stadistics.mostSoldByCategory;
     }
 
     getreport(): {
