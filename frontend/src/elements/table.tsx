@@ -72,7 +72,6 @@ export default function TablaReportes({ data }: any) {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
-                console.log("DEBUG: cell", cell.getValue());
                 return (
                   <td key={cell.id}>
                     {String(cell.getValue())}

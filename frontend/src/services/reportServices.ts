@@ -12,6 +12,7 @@ export async function fetchReportData(type: "users" | "products") {
     }
 
     const data = await response.json();
+    console.log("Datos obtenidos:", data);
     return data; // aquí tienes el JSON de tu API
   } catch (error) {
     console.error("Error en fetchReportData:", error);
