@@ -13,9 +13,10 @@ function getFilenameFromDisposition(disposition?: string): string | null {
 
 export async function downloadReport(type: "pdf" | "excel", data: any) {
   const res = await axios.get(`${API_URL}/report/download`, {
-    params: { type, data },
-    responseType: "blob", // 👈 clave: recibimos blob
+    params: { type, data: JSON.stringify(data) },
+    responseType: "blob",
   });
+
 
   // obtener filename desde Content-Disposition
   const cd = res.headers["content-disposition"];

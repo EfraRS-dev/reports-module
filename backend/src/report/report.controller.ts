@@ -3,7 +3,7 @@ import { ReportService } from './report.service';
 import type { Response } from 'express';
 @Controller('report')
 export class ReportController {
-  constructor(private readonly reportService: ReportService) {}
+  constructor(private readonly reportService: ReportService) { }
 
   @Get('users')
   async getUsersReport() {
@@ -16,12 +16,19 @@ export class ReportController {
   }
 
   @Get('download')
-  async download(@Query('type') type: 'pdf' | 'excel', data: any , @Res() res: Response) {
-    console.log("Descargando reporte:", type, data);
-    const report = await this.reportService.exportReport(type, data);
+  async download(
+    @Query('type') type: 'pdf' | 'excel',
+    @Query('data') data: string,   // axios lo manda serializado
+    @Res() res: Response
+  ) {
+    const parsedData = JSON.parse(data); // si lo mandas como string
+    console.log("Descargando reporte:", type, parsedData);
+
+    const report = await this.reportService.exportReport(type, parsedData);
 
     res.setHeader('Content-Disposition', `attachment; filename="${report.filename}"`);
     res.setHeader('Content-Type', report.mimeType);
     res.send(report.buffer);
   }
+
 }
