@@ -10,6 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.1",
+    "@mui/x-charts": "^8.10.1",
+    "@tanstack/react-table": "^8.21.3",
+    "axios": "^1.11.0",
+    "randomdata": "^0.0.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
@@ -17,6 +24,7 @@
     "@eslint/js": "^9.33.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
     "@vitejs/plugin-react-swc": "^4.0.0",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",

@@ -1,0 +1,29 @@
+
+.ExportButtons{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+/* Botón PDF */
+.btn-pdf {
+  background-color: var(--pastel_red);
+  padding: 1rem 3rem;
+  border-radius: 1.8rem;
+}
+
+.btn-pdf:hover {
+  background-color: #992525;
+}
+
+/* Botón Excel */
+.btn-excel {
+  background-color: var(--pastel_green);
+  padding: 1rem 2.7rem;
+  border-radius: 1.8rem;
+}
+
+.btn-excel:hover {
+  background-color: #21867a;
+}

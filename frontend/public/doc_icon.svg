@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Document body with folded corner -->
+  <path d="M7 4h13l5 5v17a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V4z" fill="#ffffff"/>
+  <!-- Fold -->
+  <polygon points="20,4 25,9 20,9" fill="#E5E7EB"/>
+  <!-- Document outline & fold edge -->
+  <path d="M7 4h13l5 5v17a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V4z" stroke="#111827" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M20 4v5h5" stroke="#111827" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Content lines -->
+  <rect x="10" y="13" width="12" height="2" rx="1" fill="#9CA3AF"/>
+  <rect x="10" y="17" width="12" height="2" rx="1" fill="#D1D5DB"/>
+  <rect x="10" y="21" width="8" height="2" rx="1" fill="#D1D5DB"/>
+
+  <!-- Red badge (PDF/DOC-like) -->
+  <rect x="17" y="22" width="8" height="6" rx="1.2" fill="#E53935"/>
+  <text x="21" y="26.5" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="4.5" font-weight="700" fill="#FFFFFF">DOC</text>
+</svg>
