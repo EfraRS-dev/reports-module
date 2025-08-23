@@ -1,10 +1,9 @@
-import { Report } from "./interfaz";
-import { ProductDto, ProductReportDto } from "src/dto/product.dto";
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
+import { Report } from './interfaz';
+import { ProductDto, ProductReportDto } from 'src/dto/product.dto';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 
-
-type Categoria = "Electrónicos" | "Mobiliario" | "Accesorios";
+type Categoria = 'Electrónicos' | 'Mobiliario' | 'Accesorios';
 
 @Injectable()
 export class ProductReport implements Report<{
@@ -120,6 +119,5 @@ export class ProductReport implements Report<{
 
         return { categorias, count: ventas };
     }
-
 
 }

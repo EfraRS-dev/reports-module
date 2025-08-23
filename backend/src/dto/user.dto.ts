@@ -1,36 +1,35 @@
-import { PaymentDto } from "./payment.dto";
-import { IsNotEmpty, IsString, IsOptional } from "class-validator";
+import { PaymentDto } from './payment.dto';
+import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
 
 export class UserDto {
-    @IsNotEmpty()
-    name: string;
+  @IsNotEmpty()
+  name: string;
 
-    @IsNotEmpty()
-    @IsString()
-    email:string;
+  @IsNotEmpty()
+  @IsString()
+  email: string;
 
-    @IsNotEmpty()
-    createdAt: Date;
+  @IsNotEmpty()
+  createdAt: Date;
 
-    @IsOptional()
-    lastLoginAt?: Date | null;
+  @IsOptional()
+  lastLoginAt?: Date | null;
 
-    @IsNotEmpty()
-    payments: UserReportPaymentDto[];
+  @IsNotEmpty()
+  payments: UserReportPaymentDto[];
 
-    @IsOptional()
-    mostPurchasedCategory?: string;
+  @IsOptional()
+  mostPurchasedCategory?: string;
 
-    @IsOptional()
-    paymentsQuantity?: number;
+  @IsOptional()
+  paymentsQuantity?: number;
 }
 
 export class UserReportPaymentDto {
   value: number;
   products: {
-    product:{
-        category: string;
+    product: {
+      category: string;
     };
   }[];
 }
-
